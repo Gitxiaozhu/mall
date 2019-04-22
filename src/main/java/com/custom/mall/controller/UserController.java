@@ -44,14 +44,7 @@ public class UserController {
     }
 
     @GetMapping("getId")
-    @RequiresRoles("admin")
-    public String getId(String token) {
-        String id = JWTUtil.getId(token);
-        System.out.println(id);
-        if (JWTUtil.verify(token)) {
-            String ids = JWTUtil.getId(token);
-            System.out.println(ids);
-        }
+    public String getId() {
         return "测试";
     }
 
