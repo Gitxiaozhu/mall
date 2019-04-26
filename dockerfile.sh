@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if <-e app.jar >; then
+if [ -e app.jar ]; then
        docker stop mall
        docker rm mall
 fi
