@@ -8,6 +8,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.models.auth.In;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -25,7 +26,7 @@ public class UserController {
     @Autowired
     private IUserService iUserService;
     @Autowired
-    private RedisTemplate redisTemplate;
+    private RedisTemplate<String, Integer> redisTemplate;
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
@@ -37,7 +38,9 @@ public class UserController {
     })
     @GetMapping(value = "login")
     public ResponseEntity login(String name, String password) {
-
+        redisTemplate.opsForValue().set("xiaozhu", 2);
+        Integer num = redisTemplate.opsForValue().get("xiaozhu");
+        System.out.println(num);
         User user = iUserService.getUser(name);
         System.out.println(user.getUsername());
         return ResponseEntity.status(200).body(JWTUtil.createJWT(name));
