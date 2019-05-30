@@ -30,7 +30,6 @@ public class UserController {
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
-
     @ApiOperation(value = "登陆", notes = "用户不存在就注册")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "name", value = "姓名", dataType = "String", required = true),
