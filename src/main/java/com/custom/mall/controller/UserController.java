@@ -26,7 +26,7 @@ public class UserController {
     @Autowired
     private IUserService iUserService;
     @Autowired
-    private RedisTemplate<String, Integer> redisTemplate;
+    private RedisTemplate redisTemplate;
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
@@ -38,7 +38,7 @@ public class UserController {
     @GetMapping(value = "login")
     public ResponseEntity login(String name, String password) {
         redisTemplate.opsForValue().set("xiaozhu", 2);
-        Integer num = redisTemplate.opsForValue().get("xiaozhu");
+        Integer num = (Integer) redisTemplate.opsForValue().get("xiaozhu");
         System.out.println(num);
         User user = iUserService.getUser(name);
         System.out.println(user.getUsername());
