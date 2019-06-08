@@ -12,4 +12,4 @@ docker run -it --rm -v "$PWD":/usr/src/mymaven -v "$HOME/.m2":/root/.m2 -v "$PWD
 
 #cp "$(pwd)"/target/mall-0.0.1-SNAPSHOT.jar app.jar
 
-docker run -p 8081:8081 --name mall -v "$(pwd)"/target/mall-0.0.1-SNAPSHOT.jar:/usr/app.jar --link mysql:mysql --link redis:redis java java -jar /usr/app.jar
+docker run -d -p 8081:8081 --name mall -v "$(pwd)"/target/mall-0.0.1-SNAPSHOT.jar:/usr/app.jar --link mysql:mysql --link redis:redis java java -jar /usr/app.jar
